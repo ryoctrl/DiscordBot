@@ -1,5 +1,5 @@
 {
-  "name": "discord-bot",
+  "name": "ryoctrl.discord-bot",
   "version": "0.0.1",
   "description": "Discord bot",
   "main": "index.js",
