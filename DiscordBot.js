@@ -34,27 +34,23 @@ class DiscordBot {
         return messageText.startsWith(prefix);
     }
 
-    _invokeCommand(command, args) {
+    _invokeCommand(message, command, args) {
         const commandFunction = this.commands[command];
         if(!commandFunction || typeof(commandFunction) !== 'function') return;
-        commandFunction(args);
+        commandFunction(message, args);
     }
 
     message(message) {
         if(message.author.bot) return;
-
         if(this.debug && message.channel.name !== 'test') return;
 
         const messageText = message.content;
-        const channel = message.channel;
-
         if(!this._checkPrefix(messageText)) return;
 
         let inputCommands = messageText.split(' ');
-
         if(inputCommands.length === 1) return;
 
-        this._invokeCommand(inputCommands[1], inputCommands.slice(2));
+        this._invokeCommand(message, inputCommands[1], inputCommands.slice(2));
     }
 }
 
